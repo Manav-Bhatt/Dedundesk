@@ -9,12 +9,16 @@ import { redirect } from 'next/navigation';
 import React from 'react'
 
 async function page() {
+    const user= await currentUser();
+    if(!user){
+        redirect("/sign-in");
+    }
 
   return (
     <div className="flex max-w-2xl flex-col items-center justify-between gap-4 p-8 text-lg" style={{ width: '150%' }}>
         <div>
         <CardTitle className="text-center" style={{ fontSize: '3rem' }}>
-    Welcome
+    Welcome, <span className="m1-2 font-bold">{user.firstName}</span>
 </CardTitle>
         <h2 className="mt-4 text-center text-base text-muted-foreground" style={{ fontSize: '1.5rem' }}>
         Let&apos;s get started by setting up your currency
