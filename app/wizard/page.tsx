@@ -15,16 +15,20 @@ async function page() {
     }
 
   return (
-    <div className="flex max-w-2xl flex-col items-center justify-between gap-4 p-8 text-lg" style={{ width: '150%' }}>
+    <div className="flex max-w-2xl flex-col items-center justify-between gap-4" style={{ width: '80%' }}
+    >
         <div>
-        <CardTitle className="text-center" style={{ fontSize: '3rem' }}>
-    Welcome, <span className="m1-2 font-bold">{user.firstName}</span>
-</CardTitle>
-        <h2 className="mt-4 text-center text-base text-muted-foreground" style={{ fontSize: '1.5rem' }}>
+        <h1 className="text-center text-3x1" style={{ fontSize: '2.3rem' }}
+        >
+    Welcome, <span className="m1-2 font-bold">{user.firstName}!</span>
+</h1>
+        <h2 className="mt-4 text-center text-base text-muted-foreground" //style={{ fontSize: '1.5rem' }}
+        >
         Let&apos;s get started by setting up your currency
         </h2>
 
-        <h3 className="mt-2 text-center text-sm text-muted-foreground" style={{ fontSize: '1rem' }}>
+        <h3 className="mt-2 text-center text-sm text-muted-foreground" //style={{ fontSize: '1rem' }}
+        >
             You can change these settings at any time
         </h3>
         </div>
@@ -33,7 +37,8 @@ async function page() {
         <CardHeader>
         <CardTitle>
         Currency</CardTitle>
-        <CardDescription style={{ fontSize: '1rem' }}>
+        <CardDescription //style={{ fontSize: '1rem' }}
+        >
             Set your default currency for transactions</CardDescription></CardHeader>
             <CardContent>
                 <CurrencyComboBox/>
@@ -42,9 +47,10 @@ async function page() {
         </Card>
         <Separator/>
         <Button className="w-full" asChild>
-            <Link href={"/"} style={{ fontSize: '1rem' }}> I&apos;m done! Take me to the dashboard</Link>
+            <Link href={"/"} //</Button>style={{ fontSize: '1rem' }}
+            > I&apos;m done! Take me to the dashboard</Link>
         </Button>
-        <div >
+        <div className="mt-8">
         <Logo/>
         </div>
     </div>
