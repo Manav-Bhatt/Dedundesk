@@ -32,7 +32,7 @@ function CategoriesStats({ userSettings, from, to }: Props) {
 
     return (
 
-        <div className="flex w-full flex-wrap gap-2 md: flex-nowrap">
+        <div className="flex w-full flex-wrap gap-2 md: flex-wrap">
             <SkeletonWrapper isLoading={statsQuery.isFetching}>
                 <CategoriesCard
 
