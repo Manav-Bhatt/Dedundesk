@@ -25,45 +25,44 @@ const items = [
     { label: "Manage", link: "/manage" },
   ];
 
-function MobileNavbar()
-{
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-  <div className="block border-separate bg-background md:hidden">
-    <nav className="container flex items-center justify-between px-8">
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger asChild>
-          <Button variant={"ghost"} size={"icon"}>
-            <Menu/>
-          </Button>
-
-        </SheetTrigger>
-        <SheetContent className="w-[400px] sm:w-[540px]" side="left">
-          <Logo/>
-          <div className="flex flex-col gap-1 pt-4">
-            {items.map((item)=>(
-              <NavbarItem 
-              key={item.label}
-              link={item.label}
-              label={item.label}
-              clickCallback={() => setIsOpen((prev)=> !prev)}
-              />
-            ))}
-            </div>
+  function MobileNavbar() {
+    const [isOpen, setIsOpen] = useState(false);
+  
+    return (
+      <div className="block border-separate bg-background md:hidden">
+        <nav className="container flex items-center justify-between px-8">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant={"ghost"} size={"icon"}>
+                <Menu />
+              </Button>
+            </SheetTrigger>
+            <SheetContent className="w-[400px] sm:w-[540px]" side="left">
+              <Logo />
+              <div className="flex flex-col gap-1 pt-4">
+                {items.map((item) => (
+                  <NavbarItem
+                    key={item.label}
+                    link={item.link} // Use correct 'link' prop here
+                    label={item.label}
+                    clickCallback={() => setIsOpen(false)} // Close sheet after navigation
+                  />
+                ))}
+              </div>
             </SheetContent>
-     </Sheet>
-     <div className="flex h-[80px] min-h-[60px] items-center gap-x-4">
-      <LogoMobile/>
-     </div>
-     <div className="flex items-center gap-2">
-      <ThemeSwitcherBtn/>
-      <UserButton afterSignOutUrl="/sign-in"/>
-     </div>
-    </nav>
-
-  </div>
-  );
-}
+          </Sheet>
+          <div className="flex h-[80px] min-h-[60px] items-center gap-x-4">
+            <LogoMobile />
+          </div>
+          <div className="flex items-center gap-2">
+            <ThemeSwitcherBtn />
+            <UserButton afterSignOutUrl="/sign-in" />
+          </div>
+        </nav>
+      </div>
+    );
+  }
+  
 
   function DesktopNavbar() {
     return (
@@ -90,11 +89,14 @@ function MobileNavbar()
     );
   }
   function NavbarItem({
-    link, 
-    label,clickCallback,}: {
+    link,
+    label,
+    clickCallback,
+  }: {
     link: string;
-    label: string,
-    clickCallback? : ()=>void;}) {
+    label: string;
+    clickCallback?: () => void;
+  }) {
     const pathname = usePathname();
     const isActive = pathname === link;
   
@@ -107,8 +109,14 @@ function MobileNavbar()
             "w-full justify-start text-lg text-muted-foreground hover:text-foreground",
             isActive && "text-foreground"
           )}
-          onClick={()=>{
-            if (clickCallback) clickCallback();
+          onClick={(e) => {
+            if (clickCallback) {
+              e.preventDefault(); // Prevent default behavior
+              setTimeout(() => {
+                window.location.href = link; // Navigate after delay
+                clickCallback(); // Close the sheet
+              }, 100); // Adjust delay if needed
+            }
           }}
         >
           {label}
