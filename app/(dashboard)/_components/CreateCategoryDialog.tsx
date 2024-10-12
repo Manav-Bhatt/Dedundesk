@@ -89,7 +89,7 @@ function CreateCategoryDialog({ type, successCallback, trigger}: Props) {
                 Create new
             </Button>)}
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="w-[95%]">
             <DialogHeader>
                 <DialogTitle>
                     Create <span className={cn(
@@ -185,7 +185,7 @@ function CreateCategoryDialog({ type, successCallback, trigger}: Props) {
                         Cancel
                     </Button>
                 </DialogClose>
-                <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}
+                <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending} className="mb-3"
                 >{!isPending && "Create"}
                     {isPending && <Loader2 className="animate-spin" />}
                 </Button>

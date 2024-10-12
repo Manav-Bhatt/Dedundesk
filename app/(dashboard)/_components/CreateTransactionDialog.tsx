@@ -91,7 +91,7 @@ function CreateTransactionDialog({
             <DialogTrigger asChild>
                 {trigger}
             </DialogTrigger>
-            <DialogContent>
+            <DialogContent className="w-[95%]">
                 <DialogHeader>
                     <DialogTitle>
                         Create a new <span className={cn(
@@ -141,8 +141,7 @@ function CreateTransactionDialog({
                                 </FormItem>
                             )}
                         />
-                        <div className="flex items-center
-justify-between gap-2">
+                        <div className="flex w-full gap-2 md:flex-nowrap flex-wrap">
                             <FormField
                                 control={form.control}
                                 name="category"
@@ -222,7 +221,7 @@ opacity-50" />
                             Cancel
                         </Button>
                     </DialogClose>
-                    <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending}
+                    <Button onClick={form.handleSubmit(onSubmit)} disabled={isPending} className="mb-3"
                     >{!isPending && "Create"}
                         {isPending && <Loader2 className="animate-spin" />}
                     </Button>
